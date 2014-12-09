@@ -1,7 +1,7 @@
 %%%'   HEADER
-%% @author Michael Weibel <>
-%% @copyright  Michael Weibel
-%% @doc ejabberd module that ... listens to packets sent & received by users.
+%% @author
+%% @copyright
+%% @doc example ejabberd module
 %% @end
 
 -module(mod_example).
@@ -66,17 +66,17 @@ loop(Host, Opt1) ->
 %% @doc
 %% @end
 send_packet(FromJID, ToJID, P) ->
-    Host = FromJID#jid.lserver,
-    Proc = gen_mod:get_module_proc(Host, ?PROCNAME),
-    Proc ! {persist, {send, FromJID, ToJID, P}}.
+  Host = FromJID#jid.lserver,
+  Proc = gen_mod:get_module_proc(Host, ?PROCNAME),
+  Proc ! {persist, {send, FromJID, ToJID, P}}.
 
 %% @spec receive_packet(FromJID, ToJID, P) -> ??
 %% @doc
 %% @end
 receive_packet(_JID, From, To, P) ->
-    Host = To#jid.lserver,
-    Proc = gen_mod:get_module_proc(Host, ?PROCNAME),
-    Proc ! {persist, {recv, From, To, P}}.
+  Host = To#jid.lserver,
+  Proc = gen_mod:get_module_proc(Host, ?PROCNAME),
+  Proc ! {persist, {recv, From, To, P}}.
 
 %%%.
 %%%'   PRIVATE FUNCTIONS
